@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8299F8C0BDC393DDFD33D296 /* Pods_CryptoBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246CD72F7334C561ABFE2F8E /* Pods_CryptoBird.framework */; };
 		FCDB4465229FF90500CE2725 /* BooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDB4464229FF90500CE2725 /* BooksViewModel.swift */; };
 		FCDB446722A0403D00CE2725 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDB446622A0403D00CE2725 /* BookDetailViewController.swift */; };
 		FCEC63CC229FB3CD00EACB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC63CB229FB3CD00EACB2D /* AppDelegate.swift */; };
@@ -21,9 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		246CD72F7334C561ABFE2F8E /* Pods_CryptoBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ED9C91F4CA84194EB7B57CF /* Pods-CryptoBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBird.release.xcconfig"; path = "Target Support Files/Pods-CryptoBird/Pods-CryptoBird.release.xcconfig"; sourceTree = "<group>"; };
-		B46F18A6C0C16D82282DE88D /* Pods-CryptoBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBird.debug.xcconfig"; path = "Target Support Files/Pods-CryptoBird/Pods-CryptoBird.debug.xcconfig"; sourceTree = "<group>"; };
 		FCDB4464229FF90500CE2725 /* BooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewModel.swift; sourceTree = "<group>"; };
 		FCDB446622A0403D00CE2725 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		FCEC63C8229FB3CC00EACB2D /* CryptoBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,37 +39,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8299F8C0BDC393DDFD33D296 /* Pods_CryptoBird.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		42056E3C68EA0931F65AB6A1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				246CD72F7334C561ABFE2F8E /* Pods_CryptoBird.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8C5C526C259A1B34E330F9BB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B46F18A6C0C16D82282DE88D /* Pods-CryptoBird.debug.xcconfig */,
-				7ED9C91F4CA84194EB7B57CF /* Pods-CryptoBird.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FCEC63BF229FB3CC00EACB2D = {
 			isa = PBXGroup;
 			children = (
 				FCEC63CA229FB3CC00EACB2D /* CryptoBird */,
 				FCEC63C9229FB3CC00EACB2D /* Products */,
-				8C5C526C259A1B34E330F9BB /* Pods */,
-				42056E3C68EA0931F65AB6A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,11 +110,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCEC63DD229FB3CF00EACB2D /* Build configuration list for PBXNativeTarget "CryptoBird" */;
 			buildPhases = (
-				91E3740151EA9E5D62C9324F /* [CP] Check Pods Manifest.lock */,
 				FCEC63C4229FB3CC00EACB2D /* Sources */,
 				FCEC63C5229FB3CC00EACB2D /* Frameworks */,
 				FCEC63C6229FB3CC00EACB2D /* Resources */,
-				164A38A3157CC9EF9E91C3C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,53 +168,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		164A38A3157CC9EF9E91C3C3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CryptoBird/Pods-CryptoBird-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoBird/Pods-CryptoBird-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91E3740151EA9E5D62C9324F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CryptoBird-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCEC63C4229FB3CC00EACB2D /* Sources */ = {
@@ -397,7 +324,6 @@
 		};
 		FCEC63DE229FB3CF00EACB2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B46F18A6C0C16D82282DE88D /* Pods-CryptoBird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -416,7 +342,6 @@
 		};
 		FCEC63DF229FB3CF00EACB2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7ED9C91F4CA84194EB7B57CF /* Pods-CryptoBird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

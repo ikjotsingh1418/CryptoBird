@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class CryptoClient: NSObject {
     
@@ -36,10 +35,25 @@ class CryptoClient: NSObject {
                     let myGroup = DispatchGroup()
                     for book in results.availableBooks{
                         myGroup.enter()
-                        AF.request(urlTicker, parameters: ["book": book.bookName]).responseJSON { response in
-                            if((response.data) != nil){
+                        let urlComp = NSURLComponents(string: urlTicker)!
+                        var items = [URLQueryItem]()
+                        items.append(URLQueryItem(name: "book", value: book.bookName))
+                        
+                        items = items.filter{!$0.name.isEmpty}
+                        
+                        if !items.isEmpty {
+                            urlComp.queryItems = items
+                        }
+                        
+                        var urlRequest = URLRequest(url: urlComp.url!)
+                        urlRequest.httpMethod = "GET"
+                        let config = URLSessionConfiguration.default
+                        let session = URLSession(configuration: config)
+                        
+                        let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                            if(data) != nil{
                                 do{
-                                    let lastValue = try JSONDecoder().decode(TickerDataModel.self, from: response.data!)
+                                    let lastValue = try JSONDecoder().decode(TickerDataModel.self, from:data!)
                                     
                                     book.lastPrice =   lastValue.tickerBook.lastPrice
                                     print("Finished request \(String(describing: book.bookName))")
@@ -47,13 +61,12 @@ class CryptoClient: NSObject {
                                     completion(nil,tJSONError)
                                     print ("ticker json error for \(String(describing: book.bookName)) : \(tJSONError.localizedDescription)")
                                 }
-                            }else{
-                                completion(nil,response.error)
-                                print ("Server is not responding with error : \(String(describing: response.error))")
+                            }else{ completion(nil,error)
+                                print ("Server is not responding with error : \(String(describing: error))")
                             }
-                            
                             myGroup.leave()
-                        }
+                        })
+                        task.resume()
                     }
                     myGroup.notify(queue: .main) {
                         print("Finished all requests.")
@@ -71,21 +84,37 @@ class CryptoClient: NSObject {
     
     func getBookDetailForBookName(bookName : String, completion:@escaping(BooksTickerDataModel?,Error?) -> ()){
         let urlTicker = "https://api.bitso.com/v3/ticker/"
-        AF.request(urlTicker, parameters: ["book": bookName]).responseJSON { response in
-            if((response.data) != nil){
+        
+        let urlComp = NSURLComponents(string: urlTicker)!
+        var items = [URLQueryItem]()
+        items.append(URLQueryItem(name: "book", value:bookName))
+        
+        items = items.filter{!$0.name.isEmpty}
+        
+        if !items.isEmpty {
+            urlComp.queryItems = items
+        }
+        
+        var urlRequest = URLRequest(url: urlComp.url!)
+        urlRequest.httpMethod = "GET"
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+            if(data) != nil{
                 do{
-                    let lastValue = try JSONDecoder().decode(TickerDataModel.self, from: response.data!)
+                    let lastValue = try JSONDecoder().decode(TickerDataModel.self, from: data!)
                     
-                    completion(lastValue.tickerBook,response.error)
+                    completion(lastValue.tickerBook,error)
                     print("Fetched detail of book \(String(describing: lastValue.tickerBook.bookName))")
                 }catch let tJSONError{
                     completion(nil,tJSONError)
                     print ("ticker json error for : \(tJSONError.localizedDescription)")
                 }
-            }else{
-                completion(nil,response.error)
-                print ("Server is not responding with error : \(String(describing: response.error))")
+            }else{ completion(nil,error)
+                print ("Server is not responding with error : \(String(describing: error))")
             }
-        }
+        })
+        task.resume()
     }
 }
