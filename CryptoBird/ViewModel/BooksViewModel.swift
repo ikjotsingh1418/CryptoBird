@@ -2,7 +2,7 @@
 //  BooksViewModel.swift
 //  CryptoBird
 //
-//  Created by Cubastion on 5/30/19.
+//  Created by ikjot on 5/30/19.
 //  Copyright © 2019 Event_Boosters. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ class BooksListViewModel : NSObject {
     
     var booksViewModels : [BooksViewModel] = [BooksViewModel]()
     var booksView : ViewController
-
+    
     init(view : ViewController){
         self.booksView = view
         view.startLoading()
@@ -38,6 +38,8 @@ class BooksListViewModel : NSObject {
                     self.booksViewModels = booksList
                     self.booksView.reloadTableViewForPresentData()
                     self.booksView.stopLoading()
+                    
+                    
                 }else{
                     self.booksView.reloadTableViewForPresentData()
                     self.booksView.stopLoading()
@@ -52,7 +54,7 @@ class BooksListViewModel : NSObject {
         cryptoClient.getBookDetailForBookName(bookName: bookName) { (bookDetailModel, error) in
             bookDetailView.stopLoading()
             if let BDM = bookDetailModel {
-               let populatedDetailBook = BookDetailViewModel(tickerBookModel: BDM)
+                let populatedDetailBook = BookDetailViewModel(tickerBookModel: BDM)
                 bookDetailView.reloadTableViewForPresentData(bookDetailVM: populatedDetailBook)
                 
                 // load view with detail model
@@ -74,14 +76,14 @@ class BooksViewModel: NSObject {
             if lastThree == "btc"{
                 self.lastPrice = (availableBooksModel.lastPrice ?? "0.00") + " BTC"
             }else{
-               self.lastPrice = "$"+(availableBooksModel.lastPrice ?? "0.00") + " MXN"
+                self.lastPrice = "$"+(availableBooksModel.lastPrice ?? "0.00") + " MXN"
             }
         }else{
-        //self.bookName = availableBooksModel.bookName
-        self.lastPrice = availableBooksModel.lastPrice
+            //self.bookName = availableBooksModel.bookName
+            self.lastPrice = availableBooksModel.lastPrice
         }
         
-       self.bookName = availableBooksModel.bookName?.replacingOccurrences(of: "_", with: "/")
+        self.bookName = availableBooksModel.bookName?.replacingOccurrences(of: "_", with: "/")
     }
 }
 
@@ -109,7 +111,7 @@ class BookDetailViewModel: NSObject {
         
         var str : String = "%.2f"
         if let suff = self.name?.suffix(3) {
-          str =  suff == "btc" ?  "%.8f" : "%.2f"
+            str =  suff == "btc" ?  "%.8f" : "%.2f"
         }
         if self.bid != "",self.ask != ""
         {

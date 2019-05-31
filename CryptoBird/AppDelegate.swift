@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CryptoBird
 //
-//  Created by Cubastion on 5/30/19.
+//  Created by ikjot on 5/30/19.
 //  Copyright © 2019 Event_Boosters. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  BookDetailViewController.swift
 //  CryptoBird
 //
-//  Created by Cubastion on 5/30/19.
+//  Created by ikjot on 5/30/19.
 //  Copyright © 2019 Event_Boosters. All rights reserved.
 //
 
@@ -40,7 +40,7 @@ class BookDetailViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         
         if let str = bookName {
-        viewModel?.loadBookDetailViewFor(bookName: str, bookDetailView: self)
+            viewModel?.loadBookDetailViewFor(bookName: str, bookDetailView: self)
             self.navigationItem.title = bookName?.uppercased()
         }else{
             print("BookDetailViewController : no book name entered")
@@ -53,38 +53,44 @@ class BookDetailViewController: UIViewController {
         viewModel?.loadBookDetailViewFor(bookName: bookName ?? "", bookDetailView: self)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension BookDetailViewController : BookDetailViewDelegate {
     func reloadTableViewForPresentData(bookDetailVM: BookDetailViewModel) {
-        self.lblBookName.text = bookDetailVM.name?.uppercased()
-        self.lblBookLastPrice.text = bookDetailVM.last
-        self.bookDetailTVArray = bookDetailVM.detailTVArray
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.lblBookName.text = bookDetailVM.name?.uppercased()
+            self.lblBookLastPrice.text = bookDetailVM.last
+            self.bookDetailTVArray = bookDetailVM.detailTVArray
+            self.tableView.reloadData()
+        }
         
     }
     
     func startLoading() {
-        self.tableView.isHidden = true
-        self.headingStackView.isHidden = true
-        self.loadingView.isHidden = false
+        DispatchQueue.main.async {
+            self.tableView.isHidden = true
+            self.headingStackView.isHidden = true
+            self.loadingView.isHidden = false
+        }
     }
     
     func stopLoading() {
-        self.tableView.isHidden = false
-        self.headingStackView.isHidden = false
-        self.loadingView.isHidden = true
+        DispatchQueue.main.async {
+            self.tableView.isHidden = false
+            self.headingStackView.isHidden = false
+            self.loadingView.isHidden = true
+        }
     }
     
     func reloadViewForNoDataPresent() {

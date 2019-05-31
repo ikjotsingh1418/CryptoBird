@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  CryptoBird
 //
-//  Created by Cubastion on 5/30/19.
+//  Created by ikjot on 5/30/19.
 //  Copyright © 2019 Event_Boosters. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     
     @objc func refresh(sender:AnyObject) {
         // Code to refresh table view
-         if loadedOnce {viewModel?.loadAllAvailableBooks()}
+        if loadedOnce {viewModel?.loadAllAvailableBooks()}
     }
     
     
@@ -75,24 +75,22 @@ class ViewController: UIViewController {
 
 extension ViewController : BooksViewDelegate {
     func reloadTableViewForPresentData() {
-       // guard let items =  viewModel?.booksViewModels else {
-       //     print ("items object is empty")
-      //      return
-      //  }
         self.tableView .reloadData()
         refreshControl.endRefreshing()
     }
     
     func startLoading() {
         if !loadedOnce {
-        self.tableView.isHidden = true
-        self.loadingView.isHidden = false
+            self.tableView.isHidden = true
+            self.loadingView.isHidden = false
         }
     }
     
     func stopLoading() {
-        self.tableView.isHidden = false
-        self.loadingView.isHidden = true
+        DispatchQueue.main.async {
+            self.tableView.isHidden = false
+            self.loadingView.isHidden = true
+        }
     }
     
     func reloadViewForNoDataPresent() {
